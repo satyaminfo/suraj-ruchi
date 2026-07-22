@@ -1,23 +1,637 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="hi">
 <head>
-  <title>Satyam Vishwakarma</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>सूरज ♥ रुचि - शुभ विवाह निमंत्रण</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Noto Sans Devanagari', sans-serif;
+    overflow-x:hidden;
+    background:#fff5f7;
+    color:#5a1e2a;
+    line-height:1.7;
+}
+
+/* ===== BACKGROUND ===== */
+.hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:
+        linear-gradient(rgba(255,255,255,0.15), rgba(255,255,255,0.25)),
+        url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1600&q=80');
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+/* ===== FLOATING HEARTS ===== */
+.hearts{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+}
+
+.heart{
+    position:absolute;
+    color:rgba(255,105,180,0.8);
+    animation:floatHeart linear infinite;
+    font-size:24px;
+}
+
+@keyframes floatHeart{
+    0%{
+        transform:translateY(100vh) scale(0.5) rotate(0deg);
+        opacity:0;
+    }
+    10%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-120px) scale(1.2) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* ===== FALLING FLOWERS ===== */
+.flowers{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+}
+
+.flower{
+    position:absolute;
+    animation:fall linear infinite;
+    font-size:22px;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(-80px) rotate(0deg);
+        opacity:0;
+    }
+    10%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(100vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+/* ===== MAIN CARD ===== */
+.invitation-card{
+    position:relative;
+    z-index:2;
+    max-width:950px;
+    width:100%;
+    background:rgba(255,255,255,0.94);
+    border-radius:32px;
+    padding:40px 28px;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.18),
+        inset 0 0 0 2px rgba(255,182,193,0.55);
+    backdrop-filter:blur(8px);
+    border:3px solid #ffd1dc;
+}
+
+/* Decorative corners */
+.invitation-card::before,
+.invitation-card::after{
+    content:'❀';
+    position:absolute;
+    font-size:44px;
+    color:#e91e63;
+    opacity:0.8;
+}
+
+.invitation-card::before{
+    top:16px;
+    left:18px;
+}
+
+.invitation-card::after{
+    bottom:16px;
+    right:18px;
+}
+
+.ganesh{
+    text-align:center;
+    font-size:1.2rem;
+    font-weight:700;
+    color:#d81b60;
+    margin-bottom:14px;
+}
+
+.om{
+    font-size:2rem;
+    margin-bottom:8px;
+}
+
+.main-title{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.main-title h1{
+    font-size:3rem;
+    color:#c2185b;
+    margin-bottom:6px;
+    text-shadow:0 2px 10px rgba(194,24,91,0.15);
+}
+
+.couple{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin:10px 0 18px;
+}
+
+.couple .name{
+    font-size:2.2rem;
+    font-weight:800;
+    color:#ad1457;
+}
+
+.heart-big{
+    font-size:2.6rem;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.18);}
+}
+
+.sub{
+    text-align:center;
+    color:#7b1e3b;
+    font-size:1.08rem;
+    margin-bottom:24px;
+}
+
+.guest-box{
+    background:linear-gradient(135deg,#ffe0e9,#fff0f5);
+    border:2px dashed #e91e63;
+    border-radius:18px;
+    padding:16px;
+    text-align:center;
+    margin-bottom:24px;
+}
+
+.guest-box h3{
+    color:#c2185b;
+    margin-bottom:8px;
+}
+
+.guest-name{
+    font-size:1.8rem;
+    font-weight:800;
+    color:#880e4f;
+}
+
+/* Couple info */
+.couple-info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin:24px 0;
+}
+
+.info-box{
+    background:linear-gradient(180deg,#fff7fa,#fff);
+    border-radius:22px;
+    padding:24px 20px;
+    border:1px solid #ffd6e2;
+    box-shadow:0 10px 30px rgba(233,30,99,0.08);
+}
+
+.info-box h3{
+    text-align:center;
+    color:#c2185b;
+    font-size:1.45rem;
+    margin-bottom:12px;
+}
+
+.info-box p{
+    text-align:center;
+    margin:6px 0;
+}
+
+/* Timeline */
+.timeline{
+    margin:34px 0;
+}
+
+.section-title{
+    text-align:center;
+    font-size:2rem;
+    color:#c2185b;
+    margin-bottom:24px;
+    position:relative;
+}
+
+.section-title::after{
+    content:'❀ ❀ ❀';
+    display:block;
+    color:#f06292;
+    font-size:1rem;
+    margin-top:8px;
+}
+
+.event{
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    margin-bottom:22px;
+    background:#fff;
+    border-radius:22px;
+    padding:20px;
+    border-left:6px solid #e91e63;
+    box-shadow:0 8px 24px rgba(0,0,0,0.06);
+}
+
+.event-icon{
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#e91e63,#ff80ab);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:1.6rem;
+    flex-shrink:0;
+    box-shadow:0 8px 20px rgba(233,30,99,0.25);
+}
+
+.event-content h4{
+    color:#ad1457;
+    font-size:1.3rem;
+    margin-bottom:6px;
+}
+
+/* Venue */
+.venue{
+    background:linear-gradient(135deg,#ffe4ec,#fff);
+    border-radius:26px;
+    padding:28px;
+    margin:28px 0;
+    border:2px solid #f8bbd0;
+}
+
+.venue-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:18px;
+}
+
+.venue-card{
+    background:#fff;
+    border-radius:18px;
+    padding:18px;
+    border:1px solid #ffd6e2;
+}
+
+.venue-card h4{
+    color:#c2185b;
+    margin-bottom:10px;
+}
+
+/* Blessing */
+.blessing{
+    text-align:center;
+    background:linear-gradient(135deg,#fff0f5,#ffe4ec);
+    border-radius:24px;
+    padding:28px;
+    margin-top:28px;
+    border:2px solid #ffd1dc;
+}
+
+.shloka{
+    font-size:1.08rem;
+    color:#6a1b3f;
+    margin-bottom:16px;
+    font-weight:500;
+}
+
+.family{
+    margin-top:20px;
+    font-size:0.98rem;
+}
+
+.footer{
+    text-align:center;
+    margin-top:26px;
+    padding-top:20px;
+    border-top:2px solid #f8bbd0;
+    color:#7b1e3b;
+}
+
+.footer .phone{
+    font-size:1.1rem;
+    font-weight:700;
+    color:#ad1457;
+    margin-top:8px;
+}
+
+.share-box{
+    margin-top:16px;
+    background:#fff;
+    border-radius:14px;
+    padding:14px;
+    border:1px dashed #f48fb1;
+}
+
+.share-link{
+    font-size:0.95rem;
+    word-break:break-all;
+    color:#880e4f;
+}
+
+/* Responsive */
+@media (max-width:768px){
+    .hero{
+        background-attachment:scroll;
+    }
+
+    .invitation-card{
+        padding:28px 18px;
+        border-radius:24px;
+    }
+
+    .main-title h1{
+        font-size:2.2rem;
+    }
+
+    .couple .name{
+        font-size:1.7rem;
+    }
+
+    .couple-info,
+    .venue-grid{
+        grid-template-columns:1fr;
+    }
+
+    .event{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+    }
+
+    .guest-name{
+        font-size:1.45rem;
+    }
+}
+
+/* shimmer */
+.shimmer{
+    background:linear-gradient(90deg,#c2185b,#ff80ab,#c2185b);
+    background-size:200% auto;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:shine 3s linear infinite;
+}
+
+@keyframes shine{
+    to{background-position:200% center;}
+}
+</style>
+
 </head>
+
 <body>
-  <div class="card">
-    <h1>Satyam Vishwakarma</h1>
-    <p>Project Manager | Laravel | Next.js | AWS</p>
-    <p>📍 Surat, Gujarat</p>
 
-    <h2>About Me</h2>
-    <p>I have 7 years of experience in web development and project management.</p>
+<!-- Floating Hearts -->
 
-    <h2>Contact</h2>
-    <p>Email: your@email.com</p>
-    <p>GitHub: <a href="https://github.com/YOUR_USERNAME">YOUR_USERNAME</a></p>
-  </div>
+<div class="hearts" id="hearts"></div>
 
-  <script src="script.js"></script>
+<!-- Falling Flowers -->
+
+<div class="flowers" id="flowers"></div>
+
+<section class="hero">
+    <div class="invitation-card">
+
+```
+    <div class="ganesh">
+        <div class="om">🕉️</div>
+        ॥ श्री गणेशाय नमः ॥
+    </div>
+
+    <div class="main-title">
+        <h1 class="shimmer">शुभ विवाह निमंत्रण</h1>
+    </div>
+
+    <div class="couple">
+        <span class="name">सूरज मौर्य</span>
+        <span class="heart-big">💖</span>
+        <span class="name">रुचि मौर्या</span>
+    </div>
+
+    <p class="sub">
+        परम कृपालु परमात्मा की असीम अनुकम्पा से हमारे सुपुत्र एवं सुपुत्री का शुभ परिणयोत्सव
+    </p>
+
+    <!-- Dynamic Guest Name -->
+    <div class="guest-box">
+        <h3>आदरणीय अतिथि</h3>
+        <div class="guest-name" id="guestName">श्रीमान्</div>
+        <p style="margin-top:8px;">आप सपरिवार सादर आमंत्रित हैं।</p>
+    </div>
+
+    <!-- Couple Details -->
+    <div class="couple-info">
+        <div class="info-box">
+            <h3>🤵 वर पक्ष</h3>
+            <p><strong>चि. सूरज मौर्य</strong></p>
+            <p>सुपुत्र : श्री रामलखन मौर्य</p>
+            <p>पौत्र : श्री सन्तनाथ मौर्य</p>
+            <p>माता : श्रीमती संगीता देवी मौर्या</p>
+            <p>ग्राम : नहोराडीह, पोस्ट : नहोरा</p>
+            <p>तहसील : केराकत, जिला : जौनपुर</p>
+            <p><strong>निवास : पांडेसरा, सूरत</strong></p>
+        </div>
+
+        <div class="info-box">
+            <h3>👰 वधू पक्ष</h3>
+            <p><strong>आयु. कु. रुचि मौर्या</strong></p>
+            <p>सुपुत्री : श्री हरनाथ मौर्य</p>
+            <p>पौत्री : श्री मोहन लाल मौर्य</p>
+            <p>माता : श्रीमती सुमन मौर्या</p>
+            <p>ग्राम : लेदुका, पोस्ट : लेदुका</p>
+            <p>लेदुका बाजार, जिला : जौनपुर</p>
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+        <h2 class="section-title">मांगलिक कार्यक्रम</h2>
+
+        <div class="event">
+            <div class="event-icon">🍽️</div>
+            <div class="event-content">
+                <h4>हल्दी एवं स्वागत भोज</h4>
+                <p><strong>बुधवार, 02 दिसम्बर 2026</strong></p>
+                <p>सायं 6:00 बजे से आपके आगमन तक</p>
+            </div>
+        </div>
+
+        <div class="event">
+            <div class="event-icon">💍</div>
+            <div class="event-content">
+                <h4>शुभ विवाह</h4>
+                <p><strong>गुरुवार, 03 दिसम्बर 2026</strong></p>
+                <p>रात्रि शुभ बेला में</p>
+            </div>
+        </div>
+
+        <div class="event">
+            <div class="event-icon">🎉</div>
+            <div class="event-content">
+                <h4>विदाई</h4>
+                <p><strong>शुक्रवार, 04 दिसम्बर 2026</strong></p>
+                <p>प्रातःकाल</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Venue -->
+    <div class="venue">
+        <h2 class="section-title">विवाह स्थल एवं बारात प्रस्थान</h2>
+
+        <div class="venue-grid">
+            <div class="venue-card">
+                <h4>📍 विवाह स्थल</h4>
+                <p><strong>ग्राम : लेदुका</strong></p>
+                <p>पोस्ट : लेदुका</p>
+                <p>लेदुका बाजार, जिला : जौनपुर</p>
+            </div>
+
+            <div class="venue-card">
+                <h4>🚩 बारात प्रस्थान</h4>
+                <p><strong>ग्राम : नहोराडीह</strong></p>
+                <p>पोस्ट : नहोरा</p>
+                <p>तहसील : केराकत, थाना : जलालपुर</p>
+                <p>जिला : जौनपुर</p>
+                <p><strong>समय : दोपहर 3:00 बजे</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blessing -->
+    <div class="blessing">
+        <div class="shloka">
+            ॥ मंगलम् भगवान विष्णुः, मंगलम् गरुड़ध्वजः ।<br>
+            मंगलम् पुण्डरीकाक्षः, मंगलाय तनो हरिः ॥
+        </div>
+
+        <p style="font-size:1.08rem; margin-bottom:10px;">
+            शुभ संवत 2083, शाके 1948, मार्गशीर्ष कृष्ण पक्ष दशमी,
+            गुरुवार दिनांक <strong>03/12/2026</strong> को यह शुभ विवाह संपन्न होगा।
+        </p>
+
+        <div class="family">
+            <p><strong>दर्शनाभिलाषी :</strong></p>
+            <p>
+                अमरनाथ, राजनाथ, लालमणि, रविनाथ, जितेन्द्रनाथ, कृष्णनाथ,
+                दीनानाथ, राजन, अजय, अजीत, योगेश कुमार, गुलशन कुमार,
+                शिवम, कुलदीप, अनमोल, आयन, अथर्व, प्रांश एवं समस्त मौर्य परिवार व मित्रगण।
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h3>विनीत</h3>
+        <p><strong>श्री रामजतन मौर्य • श्री रामलखन मौर्य • श्री सन्तनाथ मौर्य</strong></p>
+        <p>ग्राम : नहोराडीह, पोस्ट : नहोरा, तहसील : केराकत, जिला : जौनपुर</p>
+
+        <div class="phone">
+            📞 9898865694 • 8238173494 • 6355824472
+        </div>
+
+        <div class="share-box">
+            <p><strong>अतिथि नाम के साथ शेयर करें:</strong></p>
+            <div class="share-link" id="shareLink"></div>
+        </div>
+
+        <p style="margin-top:16px; font-size:1.05rem;">
+            💖 आपका स्नेहिल आगमन हमारे लिए सर्वोत्तम उपहार होगा 💖
+        </p>
+    </div>
+
+</div>
+```
+
+</section>
+
+<script>
+// ===== Dynamic Guest Name from URL =====
+const params = new URLSearchParams(window.location.search);
+const guest = params.get('guest');
+
+const guestElement = document.getElementById('guestName');
+
+if(guest && guest.trim() !== ''){
+    guestElement.textContent = 'श्रीमान् ' + decodeURIComponent(guest);
+} else {
+    guestElement.textContent = 'श्रीमान् __________________';
+}
+
+// Share link example
+const baseUrl = window.location.origin + window.location.pathname;
+document.getElementById('shareLink').textContent =
+    baseUrl + '?guest=Satyam';
+
+// ===== Floating Hearts =====
+const heartsContainer = document.getElementById('hearts');
+
+for(let i=0; i<20; i++){
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = ['💖','💕','💗','💘','❤️'][Math.floor(Math.random()*5)];
+    heart.style.left = Math.random()*100 + '%';
+    heart.style.animationDuration = (6 + Math.random()*6) + 's';
+    heart.style.animationDelay = Math.random()*5 + 's';
+    heart.style.fontSize = (16 + Math.random()*18) + 'px';
+    heartsContainer.appendChild(heart);
+}
+
+// ===== Falling Flowers =====
+const flowersContainer = document.getElementById('flowers');
+const flowerSymbols = ['🌸','🌺','🌷','💮','🏵️'];
+
+for(let i=0; i<25; i++){
+    const flower = document.createElement('div');
+    flower.className = 'flower';
+    flower.innerHTML = flowerSymbols[Math.floor(Math.random()*flowerSymbols.length)];
+    flower.style.left = Math.random()*100 + '%';
+    flower.style.animationDuration = (8 + Math.random()*8) + 's';
+    flower.style.animationDelay = Math.random()*6 + 's';
+    flower.style.fontSize = (18 + Math.random()*20) + 'px';
+    flowersContainer.appendChild(flower);
+}
+</script>
+
 </body>
 </html>
